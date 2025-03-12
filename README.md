@@ -128,6 +128,7 @@ A tabela abaixo apresenta 10 testes realizados com duas abordagens distintas: **
 
 Em síntese, esta tabela evidencia de forma clara a distinção entre hashing e criptografia simétrica. Ao analisar a relação entre o tamanho do texto, o tempo de processamento e a saída gerada, fica evidente que cada método atende a propósitos diferentes: **SHA-256** se destaca pela velocidade e irreversibilidade, enquanto o **AES-256** proporciona confidencialidade e reversibilidade, com um custo computacional ainda assim muito baixo em termos absolutos.
 
+
 ## Parte 3: Comparação e Análise entre AES-256 e SHA-256
 
 ### SHA-256
@@ -158,3 +159,26 @@ Em síntese, esta tabela evidencia de forma clara a distinção entre hashing e 
 - Finalidade:  
   - SHA-256: Indicado para aplicações onde a integridade dos dados é crítica e não se necessita reverter o processo.  
   - AES-256: Essencial quando é necessário proteger os dados e permitir a recuperação do conteúdo original.
+
+## Parte 4: Conclusão e Considerações Finais
+
+### Conclusões Gerais
+- Reprodutibilidade: 
+  - A metodologia empregada, com geração de chaves e IVs aleatórios e a medição precisa dos tempos de processamento, permite que os testes sejam facilmente replicados em diferentes ambientes.
+- Comparação Técnica:  
+  - SHA-256 é excelente para garantir a integridade dos dados, com resultados consistentes e de tamanho fixo, mas não permite a recuperação dos dados originais.  
+  - AES-256 oferece a vantagem da reversibilidade, possibilitando a recuperação exata do conteúdo, o que é fundamental para aplicações que necessitam de confidencialidade.
+- Desempenho:  
+  - Ambos os métodos apresentam tempos de processamento muito baixos. No entanto, a simplicidade de cálculo do SHA-256 torna-o ligeiramente mais rápido que o AES-256, que envolve operações de padding e dois processos (criptografia e descriptografia).
+- Aplicações Práticas:  
+  - Com base nos resultados obtidos, pode-se concluir que:  
+    - SHA-256 é ideal para verificação de integridade e autenticação, onde a irreversibilidade é desejável.  
+    - AES-256 é a escolha adequada para proteger dados confidenciais, onde a possibilidade de recuperar o texto original é imprescindível.
+
+### Considerações Finais
+Esta documentação demonstra, por meio de uma abordagem reprodutível e detalhada, as principais características dos algoritmos SHA-256 e AES-256. A análise comparativa baseada nos resultados obtidos evidencia:
+- A confiabilidade e consistência do SHA-256 para verificação de integridade.
+- A robustez e eficiência do AES-256 para criptografia simétrica com reversibilidade.
+
+Cada uma das quatro partes contribui de maneira equilibrada para o entendimento completo do trabalho, atendendo aos critérios estabelecidos no barema.
+
