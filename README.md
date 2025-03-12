@@ -1,3 +1,5 @@
+# Ponderada Semana 6: uso de funções criptográficas em Python
+
 ## Parte 1: Descrição do Método Utilizado
 
 ### SHA-256 (Hash)
@@ -79,3 +81,49 @@
   - **SHA-256:** Ideal para verificação de integridade e autenticação.
   - **AES-256:** Essencial quando a confidencialidade e a possibilidade de recuperar os dados originais são requisitos.
 
+## Parte 2: Resultados Obtidos
+
+Foram realizados 10 testes com entradas de texto variadas. A tabela abaixo apresenta os resultados definitivos:
+
+<div align="center">
+
+<img src="./tabela_definitiva_criptografia.PNG" alt="canvas">
+
+</div>
+
+## Parte 2: Resultados Obtidos
+
+A tabela abaixo apresenta 10 testes realizados com duas abordagens distintas: **SHA-256** (Testes 1 a 5) e **AES-256** (Testes 6 a 10). Nela, cada linha exibe informações como o texto de entrada, o tamanho desse texto, os tempos de criptografia e descriptografia (quando aplicável) e uma representação parcial do resultado criptografado ou do hash gerado.
+
+### Observações e Principais Insights
+
+1. **Diferença entre Hash e Criptografia:**
+   - Nos testes **1 a 5**, o **Tempo de Descriptografia (s)** aparece como `"hash"`, indicando que esses casos se referem ao **SHA-256**, o qual não permite reverter o hash para o texto original.  
+   - Já nos testes **6 a 10**, são exibidos tempos tanto de criptografia quanto de descriptografia, pois **AES-256** é um algoritmo simétrico e reversível.
+
+2. **Tamanho do Texto vs. Tempo de Processamento:**
+   - A coluna **Tamanho** mostra que as entradas variam de 3 caracteres (Teste 9) até 137 caracteres (Teste 7).  
+   - Embora haja alguma variação no tempo de processamento, todos os valores são extremamente baixos (na casa dos microssegundos). Fatores como sobrecarga do sistema ou geração aleatória de IV podem influenciar pequenas discrepâncias (por exemplo, o Teste 6 tem um tempo de criptografia maior do que o Teste 7, apesar de ter menos caracteres).
+
+3. **SHA-256 (Testes 1 a 5):**
+   - Mesmo para textos mais longos (por exemplo, 73 caracteres no Teste 5), o tempo de criptografia (na verdade, o tempo de geração do hash) permanece muito baixo (0.0000284 s).  
+   - O **hash** resultante é sempre representado por um tamanho fixo em hexadecimal (64 caracteres), embora apenas uma parte seja mostrada na coluna *Resultado Criptografado* (por exemplo, `"31235...67562"`).
+
+4. **AES-256 (Testes 6 a 10):**
+   - As entradas passam por criptografia e posteriormente por descriptografia, apresentando dois tempos distintos.  
+   - A coluna *Resultado Criptografado* exibe um trecho parcial do ciphertext (por exemplo, `"3850d...da252(128)"`), com um sufixo que pode indicar o tamanho total do texto cifrado (em bits ou bytes, dependendo da anotação).  
+   - Mesmo textos curtos, como no Teste 9 ("Sol"), requerem padding para atingir um bloco de 16 bytes, resultando em ciphertexts consideravelmente maiores que a entrada original.
+
+5. **Reversibilidade vs. Irreversibilidade:**
+   - **SHA-256** (Testes 1-5) deixa claro que não há como recuperar o texto original — o valor `"hash"` na coluna de descriptografia reforça essa característica.  
+   - **AES-256** (Testes 6-10) ilustra como o texto original pode ser restaurado (veja a coluna *Tempo de Descriptografia (s)*), evidenciando a necessidade de guardar a chave e o IV de forma segura.
+
+6. **Impacto do Tamanho nos Resultados:**
+   - Observa-se que o Teste 7, com 137 caracteres, não apresentou o maior tempo de criptografia, mostrando que o tamanho do texto não é o único fator determinante — há influências como sobrecarga do sistema, estado do interpretador Python, etc.  
+   - Apesar disso, há uma tendência de que textos maiores possam demandar um pouco mais de tempo de processamento, especialmente no caso da criptografia AES-256.
+
+7. **Aplicações Práticas:**
+   - A rapidez do **SHA-256** faz dele uma ótima escolha para verificação de integridade e autenticação, mas sem a possibilidade de recuperar a informação original.  
+   - O **AES-256**, mesmo com tempos de processamento ligeiramente mais altos, permite a confidencialidade dos dados e a subsequente recuperação do conteúdo, o que é fundamental em aplicações como armazenamento de dados sigilosos e comunicações seguras.
+
+Em síntese, esta tabela evidencia de forma clara a distinção entre hashing e criptografia simétrica. Ao analisar a relação entre o tamanho do texto, o tempo de processamento e a saída gerada, fica evidente que cada método atende a propósitos diferentes: **SHA-256** se destaca pela velocidade e irreversibilidade, enquanto o **AES-256** proporciona confidencialidade e reversibilidade, com um custo computacional ainda assim muito baixo em termos absolutos.
