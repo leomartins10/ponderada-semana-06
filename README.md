@@ -127,3 +127,34 @@ A tabela abaixo apresenta 10 testes realizados com duas abordagens distintas: **
    - O **AES-256**, mesmo com tempos de processamento ligeiramente mais altos, permite a confidencialidade dos dados e a subsequente recuperação do conteúdo, o que é fundamental em aplicações como armazenamento de dados sigilosos e comunicações seguras.
 
 Em síntese, esta tabela evidencia de forma clara a distinção entre hashing e criptografia simétrica. Ao analisar a relação entre o tamanho do texto, o tempo de processamento e a saída gerada, fica evidente que cada método atende a propósitos diferentes: **SHA-256** se destaca pela velocidade e irreversibilidade, enquanto o **AES-256** proporciona confidencialidade e reversibilidade, com um custo computacional ainda assim muito baixo em termos absolutos.
+
+## Parte 3: Comparação e Análise entre AES-256 e SHA-256
+
+### SHA-256
+- Natureza:
+  - Função hash unidirecional que gera um resumo fixo de 256 bits.
+- Características:
+  - Tamanho Fixo: Gera um hash de 64 caracteres (em hexadecimal), independentemente do tamanho da entrada.  
+  - Irreversibilidade: Não permite reverter o hash para o texto original.
+- Aplicação:  
+  - Utilizado para verificação de integridade, autenticação e armazenamento seguro de senhas (quando combinado com técnicas adicionais).
+
+### AES-256
+- Natureza: 
+  - Algoritmo de criptografia simétrica que permite tanto a criptografia quanto a descriptografia.
+- Características:  
+  - Reversibilidade: A mesma chave e IV usados para criptografar permitem recuperar exatamente o texto original.  
+  - Variação no Ciphertext: Devido à utilização de um IV aleatório, mesmo a mesma mensagem gera ciphertexts diferentes a cada execução.
+- Aplicação:  
+  - Adequado para proteger a confidencialidade dos dados e garantir que o conteúdo possa ser recuperado posteriormente.
+
+### Análise Comparativa Baseada nos Resultados
+- Consistência de Saída:  
+  - SHA-256: Gera uma saída com tamanho fixo, o que facilita a verificação de integridade.  
+  - AES-256: Gera ciphertexts que, apesar de variarem em aparência, são revertíveis para o texto original quando os parâmetros corretos são usados.
+- Desempenho: 
+  - SHA-256: Apresenta tempos de processamento ligeiramente menores, dada a natureza unidirecional da função hash.  
+  - AES-256: Embora o processo de criptografia e descriptografia seja um pouco mais custoso, os tempos medidos continuam a ser extremamente baixos, adequados para aplicações em tempo real.
+- Finalidade:  
+  - SHA-256: Indicado para aplicações onde a integridade dos dados é crítica e não se necessita reverter o processo.  
+  - AES-256: Essencial quando é necessário proteger os dados e permitir a recuperação do conteúdo original.
